@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+#top {
+    background-color: white;
+    height: 70%;
+}
+
+#bot {
+    background-color: rgb(71, 159, 170);
+    height: 30%;
+}
+
+p {
+    margin: 10px;
+}
