@@ -42,7 +42,8 @@ class Tile
         switch (type)
         {
             case "wall":
-                this.texture
+                this.texture = new Image(20, 20)
+                this.texture.src = "wall.png"
                 this.passable = false
                 break;
             case "plain":
@@ -120,26 +121,32 @@ class Worker extends Ant
     constructor(hive = 0, mapX, mapY)
     {
         super(hive, mapX, mapY)
-        this.x = Math.floor(Math.random() * 20)
-        this.y = Math.floor(Math.random() * 20)
+        this.x = Math.floor(Math.random() * 18)+1
+        this.y = Math.floor(Math.random() * 18)+1
         this.health = 100
         this.texture = new Image(20, 20)
         this.texture.src = "ant_big.png"
     }
 
-    decide()
+    decide(antmap, tilemap)
     {
         if (this.task == null)
         {
-            this.idle()
+            this.idle(antmap, tilemap)
             console.log(`${this.hive}:worker:idle | ${this.velocity}:${this.vector}`)
         }
     }
 
-    idle()
+    idle(antmap, tilemap)
     {
-        this.velocity = Math.floor(Math.random() * 2)
-        this.vector = [Math.floor(Math.random() * 3)-1, Math.floor(Math.random() * 3)-1]
+        while (true)
+        {
+            this.velocity = Math.floor(Math.random() * 2)
+            this.vector = [Math.floor(Math.random() * 3)-1, Math.floor(Math.random() * 3)-1]
+            if (tilemap.tiles[this.x+this.vector[0]*this.velocity][this.y+this.vector[1]*this.velocity].passable)
+                if (antmap.tiles[this.x+this.vector[0]*this.velocity][this.y+this.vector[1]*this.velocity]==null) break;
+        }
+        
         this.x += this.vector[0]*this.velocity
         this.y += this.vector[1]*this.velocity
 
@@ -162,7 +169,7 @@ class Worker extends Ant
 
 class Hive extends Entity
 {
-    constructor(hiveIndex, antCount = 5, x, y)
+    constructor(hiveIndex, antCount = 25, x, y)
     {
         super(1,1)
         this.hive = hiveIndex
@@ -195,45 +202,63 @@ class Camera
 
 class Map
 {
-    constructor(x=20, y=10)
+    constructor(x=20, y=10, mode=0)
     {
         this.tiles = Array.from(Array(y), () => new Array(x))
-        for (let i = 0; i < y; i++)
+        switch(mode)
         {
-            for (let j = 0; j < x; j++)
-            {
-                this.tiles[i][j] = new Tile()
-            }
+            case 1: // antmap
+                for (let i = 0; i < y; i++)
+                {
+                    for (let j = 0; j < x; j++)
+                    {
+                        this.tiles[i][j] = null
+                    }
+                }
+                break
+            case 2: // markermap
+                break
+            default: // tilemap
+                for (let i = 0; i < y; i++)
+                {
+                    for (let j = 0; j < x; j++)
+                    {   
+                        if (i == 0 || j == 0 || i == y-1 || j == x-1)
+                            this.tiles[i][j] = new Tile("wall")
+                        else
+                            this.tiles[i][j] = new Tile()
+                    }
+                }
+                break;
         }
-    }
-}
-
-class M_Map extends Map
-{
-    constructor()
-    {
-        super(0,0)    
     }
 }
 
 class Simulation
 {
-    constructor(hiveCount = 1, mapX = 20, mapY = 20)
+    constructor(hiveCount = 1, mapX = 75, mapY = 75)
     {
         this.pause = false
         this.turn = 0
         this.camera = new Camera()
         this.map = new Map(mapX, mapY)
+        this.antmap = new Map(mapX, mapY, 1)
         this.hives = []
         for (let i = 0; i < hiveCount; i++)
         {
             this.hives.push(new Hive(i, 10, mapX, mapY))
         }
+        this.hives.forEach(hive => {
+            console.log("Hive: " + hive.hive)
+            hive.ants.forEach(ant =>{
+                this.antmap.tiles[ant.x][ant.y] = ant
+            })
+        })
     }
 
     run()
     {
-        document.addEventListener("keydown", (event)=>{foo.keydown(event)}, false)
+        document.addEventListener("keydown", (event)=>{this.keydown(event)}, false)
         this.render()
         console.log("Run Successful!")
         this.game()
@@ -243,11 +268,29 @@ class Simulation
     game()
     {
         if (this.pause) return
+
+        // update antmap[]
+        for (let i = 0; i < this.antmap.tiles.length; i++) 
+        {
+            for (let j = 0; j < this.antmap.tiles[i].length; j++) 
+            {
+                this.antmap.tiles[i][j] = null
+            }
+        }
+        //for (let x of this.antmap.titles)
+        
+        this.hives.forEach(hive => {
+            console.log("Hive: " + hive.hive)
+            hive.ants.forEach(ant =>{
+                this.antmap.tiles[ant.x][ant.y] = ant
+            })
+        })
+
         console.log("Turn: " + this.turn)
         this.hives.forEach(hive => {
             console.log("Hive: " + hive.hive)
             hive.ants.forEach(ant =>{
-                ant.decide()
+                ant.decide(this.antmap, this.map)
             })
         })
         this.turn += 1
@@ -266,9 +309,13 @@ class Simulation
 
         for (let i = 0; i < this.map.tiles.length; i++)
         {
+            // break when outside the thing
             for (let j = 0; j < this.map.tiles[i].length; j++)
             {
+                // break when outside the thing
                 ctx.drawImage(this.map.tiles[i][j].texture, x, y, (this.map.tiles[0][0].texture.width*this.camera.zoom), (this.map.tiles[0][0].texture.height*this.camera.zoom))
+                if (this.antmap.tiles[i][j] != null) 
+                    ctx.drawImage(this.antmap.tiles[i][j].texture, x, y, (this.map.tiles[0][0].texture.width*this.camera.zoom), (this.map.tiles[0][0].texture.height*this.camera.zoom))
                 //console.log(this.map.tiles[i][j])
                 //console.log(x)
                 //console.log(y)
@@ -278,15 +325,14 @@ class Simulation
             y += this.map.tiles[0][0].texture.height*this.camera.zoom
         }
 
-        this.hives.forEach(hive => {
-            console.log("Hive: " + hive.hive)
-            hive.ants.forEach(ant =>{
-                
-                x = (0 - this.camera.x) + ant.x*(this.map.tiles[0][0].texture.width*this.camera.zoom)// camera X
-                y = (0 - this.camera.y) + ant.y*(this.map.tiles[0][0].texture.height*this.camera.zoom)// camera Y
-                ctx.drawImage(ant.texture, x, y, (ant.texture.width*this.camera.zoom), (ant.texture.height*this.camera.zoom))
-            })
-        })
+        // this.hives.forEach(hive => {
+        //     console.log("Hive: " + hive.hive)
+        //     hive.ants.forEach(ant =>{
+        //         x = (0 - this.camera.x) + ant.x*(this.map.tiles[0][0].texture.width*this.camera.zoom)// camera X
+        //         y = (0 - this.camera.y) + ant.y*(this.map.tiles[0][0].texture.height*this.camera.zoom)// camera Y
+        //         ctx.drawImage(ant.texture, x, y, (ant.texture.width*this.camera.zoom), (ant.texture.height*this.camera.zoom))
+        //     })
+        // })
 
 
     }    
@@ -336,7 +382,7 @@ class Simulation
             
             // NumMin - zoom out
             case 109:
-                if (this.camera.zoom > 0.5) this.camera.zoom -= 0.05
+                if (this.camera.zoom > 0.25) this.camera.zoom -= 0.05
                 break
 
             // NumPlus - zoom in
