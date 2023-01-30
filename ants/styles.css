@@ -1,0 +1,21 @@
+html, body {
+    margin: 0px;
+    height: 100%;  
+    background-color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+#top {
+    background-color: salmon;
+    height: 100%;  
+}
+
+#bot {
+    background-color: rgb(71, 159, 170);
+    height: 0%;
+}
+
+p {
+    margin: 10px;
+}
