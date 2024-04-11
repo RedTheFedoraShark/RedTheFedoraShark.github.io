@@ -1,0 +1,54 @@
+body { 
+    margin: 0px;
+    background-color:  #4040bf;
+    text-align: center;
+    color:white;
+    font-family:helvetica;
+    height: 500px;
+}
+
+main {
+    padding:20px;
+}
+
+img {
+    pointer-events: none;
+    user-select: none;
+    height: 200px;
+}
+
+a:visited {
+
+}
+
+a {
+    text-decoration: none;
+    color:white;
+    padding:5px;
+    margin:5px;
+    border-radius: 5px;
+    user-select: none;
+}
+
+a:hover {
+    background-color:cornflowerblue;
+}
+
+#menu {
+    height: 100px;
+    position: fixed;
+
+    text-align: center;
+}
+
+#grid {
+    height: 500px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    overflow-y: scroll;
+}
+
+#tile {
+    width: auto;
+    height: auto;
+}

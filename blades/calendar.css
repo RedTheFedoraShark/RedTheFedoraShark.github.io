@@ -1,0 +1,12 @@
+#calendar {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+}
+
+.week {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    border-radius: 2px;
+    border-color: aqua;
+}
