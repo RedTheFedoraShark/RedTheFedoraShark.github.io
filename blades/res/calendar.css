@@ -124,12 +124,16 @@ h2, h4{
 }
 
 #about {
+    background-color: inherit;
     border: none;
     font-family: Cambria;
     font-variant: small-caps;
     font-weight: bold;
     color: white;
-    
+}
+
+#about:hover {
+    background-color: #63636e8f;
 }
 
 @keyframes popup {
