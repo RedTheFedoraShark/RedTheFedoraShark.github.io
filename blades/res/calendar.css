@@ -28,6 +28,19 @@ h2, h4{
     font-variant: small-caps;
 }
 
+a {
+    color: rgb(0, 81, 255);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: rgba(0, 81, 255, 0.527);
+}
+
+a:visited {
+    color: blue;
+}
+
 .footer-text {
     margin: 5px 10px 5px 10px;
     list-style: none;
