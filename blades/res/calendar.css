@@ -23,59 +23,15 @@ main {
     width: 100%;
 }
 
-h2 {
+h2, h4{
     text-align: center;
     font-variant: small-caps;
 }
 
-p {
-    font-size: 1.05rem;
-    line-height: 1.4rem;
-    word-spacing: 2px;
-    font-weight: 0;
-    color: #d7d8da;
-}
-
-#footer-text {
+.footer-text {
     margin: 5px 10px 5px 10px;
     list-style: none;
-}
-
-#image {
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
-}
-
-#scrollcontainer
-{
-    width: 100%;
-    overflow: auto;
-}
-
-#calendar {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1rem;
-    /* height: 100%; */
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
-    /* background-color: aliceblue; */
-    z-index: 0;
-    user-select: none;
-    /* font */
-    color: white;
-    font-variant: small-caps;
-}
-
-#sidepanel {
-    padding: 15px;
-    width: 500px;
-    color: white;
-    background-image: linear-gradient(180deg, #0d0e13, #2b2c31 80%);
-    text-align: justify;
-    overflow: auto;
-    resize: horizontal;
+    text-align: center;
 }
 
 
@@ -122,6 +78,60 @@ p {
     border-radius: 5px;
 }
 
+#image {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+#scrollcontainer
+{
+    width: 100%;
+    overflow: auto;
+}
+
+#calendar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1rem;
+    /* height: 100%; */
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+    /* background-color: aliceblue; */
+    z-index: 0;
+    user-select: none;
+    /* font */
+    color: white;
+    font-variant: small-caps;
+}
+
+#sidepanel {
+    padding: 15px;
+    width: 500px;
+    color: white;
+    background-image: linear-gradient(180deg, #0d0e13, #2b2c31 80%);
+    text-align: justify;
+    overflow: auto;
+    resize: horizontal;
+}
+
+#content {
+    font-size: 1.05rem;
+    line-height: 1.4rem;
+    word-spacing: 2px;
+    font-weight: 0;
+    color: #d7d8da;
+}
+
+#about {
+    border: none;
+    font-family: Cambria;
+    font-variant: small-caps;
+    font-weight: bold;
+    color: white;
+    
+}
+
 @keyframes popup {
     from {
         margin: 3px;
@@ -138,10 +148,6 @@ p {
         margin: 3px;
         border-radius: 5px;
     }
-    /* 40% {
-        margin: 6px;
-        border-radius: 6px;
-    } */
     100% {
         margin: 10px;
         border-radius: 10px;

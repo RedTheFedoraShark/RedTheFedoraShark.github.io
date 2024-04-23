@@ -59,6 +59,20 @@ function select(event)
     selected = week
 }
 
+function deselect(event){
+    if(event.button == 2) { 
+        if (selected != null)
+        {
+            weeks[selected].className = 'week' 
+            sidepanel.entry.title.innerHTML = sidepanel.entry.defaultTitle
+            sidepanel.entry.content.innerHTML = sidepanel.entry.defaultContent
+            sidepanel.entry.image.src = sidepanel.entry.defaultImage
+        } 
+        selected = null
+        return false 
+    } 
+}
+
 function styleUpdate()
 {
     scrollContainer.style.height = `${window.innerHeight}px`
@@ -72,9 +86,9 @@ function styleUpdate()
 
 /* setup constants */
 const seasons = {
-    winter: '#aaabb17f',
-    spring: '#ffeeca6f',
-    autumn: '#d5a4187f'
+    winter: '#63636e8f',
+    spring: '#646f624f',
+    autumn: '#915d033f'
 }
 
 const months = [ 'Mendar', 'Kalivet', 'Suran', 'Ulsivet', 'Volvinet', 'Elisnar' ]
@@ -84,7 +98,9 @@ const scrollContainer = document.querySelector("#scrollcontainer")
 const calendar = document.querySelector("#calendar")
 const popup = document.querySelector("#popup")
 const sidepanel = document.querySelector("#sidepanel")
+const about = document.querySelector("#about")
 const weeks = new Array()
+
 var selected = null
 
 /* setup sidepanel contents */
@@ -179,12 +195,12 @@ for (let i = 12; i < 77; i++)
     weeks[i].desc.style.textAlign = 'right'
     weeks[i].desc.style.margin = '5px'
     weeks[i].desc.style.fontSize = '15px'
-    weeks[i].desc.style.opacity = '0.8'
+    weeks[i].desc.style.opacity = '0.81'
 
     weeks[i].etitle.textContent = `${data.weeks[it].title}`
     weeks[i].etitle.style.textAlign = 'right'
     weeks[i].etitle.style.fontSize = '12px'
-    weeks[i].etitle.style.opacity = '0.8'
+    weeks[i].etitle.style.opacity = '0.81'
     weeks[i].etitle.style.margin = '2px 5px 5px 4px'
     it++
 }
@@ -193,17 +209,8 @@ for (let i = 12; i < 77; i++)
 styleUpdate()
 /* global event listeners */
 onresize = (event) => {styleUpdate()}
-oncontextmenu = (event) => { if(event.button == 2) { 
-    if (selected != null)
-    {
-        weeks[selected].className = 'week' 
-        sidepanel.entry.title.innerHTML = sidepanel.entry.defaultTitle
-        sidepanel.entry.content.innerHTML = sidepanel.entry.defaultContent
-        sidepanel.entry.image.src = sidepanel.entry.defaultImage
-    } 
-    selected = null
-    return false } }
-
+oncontextmenu = (event) => {if (!deselect(event)) return false}
+about.addEventListener('click', ()=>{ deselect({button: 2})})
 sidepanel.entry.image.addEventListener('error', (event)=>{
-    event.currentTarget.src="";
+    event.currentTarget.src=""
 })

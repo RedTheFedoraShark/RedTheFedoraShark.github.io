@@ -1,0 +1,485 @@
+{
+    "weeks": 
+    [
+        {
+            "week": 1,
+            "desc": "1st - 6th",
+            "season": "winter",
+            "title": "1st Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 2,
+            "desc": "7th - 12th",
+            "season": "winter",
+            "title": "2nd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 3,
+            "desc": "13th - 18th",
+            "season": "winter",
+            "title": "3rd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 4,
+            "desc": "19th - 24th",
+            "season": "winter",
+            "title": "4th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 5,
+            "desc": "25th - 30th",
+            "season": "winter",
+            "title": "5th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 6,
+            "desc": "31st - 36th",
+            "season": "winter",
+            "title": "6th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 7,
+            "desc": "37st - 42nd",
+            "season": "winter",
+            "title": "7th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 8,
+            "desc": "43rd - 48th",
+            "season": "winter",
+            "title": "8th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 9,
+            "desc": "49th - 54th",
+            "season": "winter",
+            "title": "9th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 10,
+            "desc": "55th - 60th",
+            "season": "winter",
+            "title": "10th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 11,
+            "desc": "1st - 6th",
+            "season": "spring",
+            "title": "11th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 12,
+            "desc": "7th - 12th",
+            "season": "spring",
+            "title": "12th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 13,
+            "desc": "13th - 18th",
+            "season": "spring",
+            "title": "13th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 14,
+            "desc": "19th - 24th",
+            "season": "spring",
+            "title": "14th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 15,
+            "desc": "25th - 30th",
+            "season": "spring",
+            "title": "15th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 16,
+            "desc": "31st - 36th",
+            "season": "spring",
+            "title": "16th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 17,
+            "desc": "37st - 42nd",
+            "season": "spring",
+            "title": "17th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 18,
+            "desc": "43rd - 48th",
+            "season": "spring",
+            "title": "18th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 19,
+            "desc": "49th - 54th",
+            "season": "spring",
+            "title": "19th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 20,
+            "desc": "55th - 60th",
+            "season": "spring",
+            "title": "20th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 21,
+            "desc": "1st - 6th",
+            "season": "spring",
+            "title": "21st Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 22,
+            "desc": "7th - 12th",
+            "season": "spring",
+            "title": "22nd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 23,
+            "desc": "13th - 18th",
+            "season": "spring",
+            "title": "23rd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 24,
+            "desc": "19th - 24th",
+            "season": "spring",
+            "title": "24th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 25,
+            "desc": "25th - 30th",
+            "season": "spring",
+            "title": "25th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 26,
+            "desc": "31st - 36th",
+            "season": "spring",
+            "title": "26th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 27,
+            "desc": "37st - 42nd",
+            "season": "spring",
+            "title": "27th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 28,
+            "desc": "43rd - 48th",
+            "season": "spring",
+            "title": "28th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 29,
+            "desc": "49th - 54th",
+            "season": "spring",
+            "title": "29th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 30,
+            "desc": "55th - 60th",
+            "season": "spring",
+            "title": "30th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 31,
+            "desc": "1st - 6th",
+            "season": "autumn",
+            "title": "31st Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 32,
+            "desc": "7th - 12th",
+            "season": "autumn",
+            "title": "32nd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 33,
+            "desc": "13th - 18th",
+            "season": "autumn",
+            "title": "33rd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 34,
+            "desc": "19th - 24th",
+            "season": "autumn",
+            "title": "34th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 35,
+            "desc": "25th - 30th",
+            "season": "autumn",
+            "title": "35th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 36,
+            "desc": "31st - 36th",
+            "season": "autumn",
+            "title": "36th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 37,
+            "desc": "37st - 42nd",
+            "season": "autumn",
+            "title": "37th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 38,
+            "desc": "43rd - 48th",
+            "season": "autumn",
+            "title": "38th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 39,
+            "desc": "49th - 54th",
+            "season": "autumn",
+            "title": "39th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 40,
+            "desc": "55th - 60th",
+            "season": "autumn",
+            "title": "40th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 41,
+            "desc": "1st - 6th",
+            "season": "autumn",
+            "title": "41st Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 42,
+            "desc": "7th - 12th",
+            "season": "autumn",
+            "title": "42nd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 43,
+            "desc": "13th - 18th",
+            "season": "autumn",
+            "title": "43rd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 44,
+            "desc": "19th - 24th",
+            "season": "autumn",
+            "title": "44th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 45,
+            "desc": "25th - 30th",
+            "season": "autumn",
+            "title": "45th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 46,
+            "desc": "31st - 36th",
+            "season": "autumn",
+            "title": "46th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 47,
+            "desc": "37st - 42nd",
+            "season": "autumn",
+            "title": "47th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 48,
+            "desc": "43rd - 48th",
+            "season": "autumn",
+            "title": "48th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 49,
+            "desc": "39th - 54th",
+            "season": "autumn",
+            "title": "49th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 50,
+            "desc": "55th - 60th",
+            "season": "autumn",
+            "title": "50th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 51,
+            "desc": "1st - 6th",
+            "season": "winter",
+            "title": "51st Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 52,
+            "desc": "7th - 12th",
+            "season": "winter",
+            "title": "52nd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 53,
+            "desc": "13th - 18th",
+            "season": "winter",
+            "title": "53rd Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 54,
+            "desc": "19th - 24th",
+            "season": "winter",
+            "title": "54th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 55,
+            "desc": "25th - 30th",
+            "season": "winter",
+            "title": "55th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 56,
+            "desc": "31st - 36th",
+            "season": "winter",
+            "title": "56th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 57,
+            "desc": "37st - 42nd",
+            "season": "winter",
+            "title": "57th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 58,
+            "desc": "43rd - 48th",
+            "season": "winter",
+            "title": "58th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 59,
+            "desc": "49th - 54th",
+            "season": "winter",
+            "title": "59th Week of the Year",
+            "content": "",
+            "image": ""
+        },
+        {
+            "week": 60,
+            "desc": "55th - 60th",
+            "season": "winter",
+            "title": "60th Week of the Year",
+            "content": "",
+            "image": ""
+        }
+    ]
+}
