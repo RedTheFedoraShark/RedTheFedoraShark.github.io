@@ -1,0 +1,160 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    scroll-behavior: auto;
+    background-image: linear-gradient(180deg,#2b2c31,#4c4d52 20%);
+    font-family: Cambria;
+}
+
+footer {
+    height: 50px;
+    font-size: 10px;
+    /* width: 100%; */
+    background-color: #2b2c31;   
+    color: #d7d8da;
+    font-variant: small-caps;
+    padding-top: 10px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-variant: small-caps;
+}
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.4rem;
+    word-spacing: 2px;
+    font-weight: 0;
+    color: #d7d8da;
+}
+
+#footer-text {
+    margin: 5px 10px 5px 10px;
+    list-style: none;
+}
+
+#image {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+#scrollcontainer
+{
+    width: 100%;
+    overflow: auto;
+}
+
+#calendar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1rem;
+    /* height: 100%; */
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+    /* background-color: aliceblue; */
+    z-index: 0;
+    user-select: none;
+    /* font */
+    color: white;
+    font-variant: small-caps;
+}
+
+#sidepanel {
+    padding: 15px;
+    width: 500px;
+    color: white;
+    background-image: linear-gradient(180deg, #0d0e13, #2b2c31 80%);
+    text-align: justify;
+    overflow: auto;
+    resize: horizontal;
+}
+
+
+.week, .selected {
+    /* placement */
+    z-index: 1;
+    height: 100px;
+    width: 100px;
+    /* contents */
+    display: flex;
+    flex-direction: column;
+}
+
+.week {
+    /* border */
+    margin: 10px;
+    background-color: black;
+    border-radius: 10px;
+    animation-name: popdown;
+    animation-duration: 1s;
+    font-weight: 0;
+}
+
+.selected {
+    /* border-collapse: collapse; */
+    /* border-width: 5px; */
+    /* border-color: yellow; */
+    box-shadow: inset 0 0 0 1px darkgoldenrod;
+    animation-name: popup;
+    animation-duration: 0.2s;
+}
+
+.weekname {
+    margin: 10px 10px -20px 10px;
+    height: 100px;
+    width: 100px;
+    background-color: inherit;
+    font-size: 23px;
+}
+
+.week:hover {
+    animation: highlight 0.5s;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+@keyframes popup {
+    from {
+        margin: 3px;
+        border-radius: 5px;
+    }
+    to {
+        margin: 0px;
+        border-radius: 2px;
+    }
+}
+
+@keyframes popdown {
+    0% {
+        margin: 3px;
+        border-radius: 5px;
+    }
+    /* 40% {
+        margin: 6px;
+        border-radius: 6px;
+    } */
+    100% {
+        margin: 10px;
+        border-radius: 10px;
+    }
+}
+
+@keyframes highlight {
+    from {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    to {
+        margin: 3px;
+        border-radius: 5px;
+    }
+}
