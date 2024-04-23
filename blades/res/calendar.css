@@ -29,16 +29,16 @@ h2, h4{
 }
 
 a {
-    color: rgb(0, 81, 255);
+    color: rgb(0, 157, 255);
     text-decoration: underline;
 }
 
 a:hover {
-    color: rgba(0, 81, 255, 0.527);
+    color: rgba(0, 157, 255, 0.527);
 }
 
 a:visited {
-    color: blue;
+    color: rgb(0, 81, 255);
 }
 
 .footer-text {
