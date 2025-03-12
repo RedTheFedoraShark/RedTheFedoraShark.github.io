@@ -1,0 +1,83 @@
+html {
+    font-size: 20px;
+}
+
+body { 
+    margin: 0px;
+    background-color:  burlywood;
+    color:white;
+    font-family:helvetica;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    min-height: 50%;
+    width: 100%;
+    background-color: #09122C;
+    flex: 1;
+}
+
+footer {
+    background-color: red;
+    min-height: 5vh;
+
+    height: fit-content;
+}
+
+header {
+    display: flex;
+    min-height: 5vh;
+    height: fit-content;
+    margin: 1rem;
+}
+
+nav {
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-style: oblique 40deg;
+}
+
+a:visited {
+}
+
+.menu {
+    background-color: white;
+    min-height: 2rem;
+    margin: none;
+    display: flex;
+    overflow: scroll;
+}
+
+.selector {
+    border: none;
+    padding: 0.8rem;
+    min-width: 10%;
+    font-size: 0.8rem;
+}
+
+#homepage {
+    flex:1;
+    font-size: 1.6rem;
+}
+
+#selected {
+    background-color: brown;
+}
+
+@keyframes ahoveron {
+    from {
+        font-style: none;
+    }
+    to {
+        font-style: oblique 500deg;
+    }
+}

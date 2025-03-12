@@ -4,22 +4,28 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link  rel="stylesheet" href="style.css">
+        <link  rel="stylesheet" href="res/style.css">
         <title>RedTheFedoraShark</title>
     </head>
     <body>
+        <header>
+            <a id="homepage" href="#">RedTheFedoraShark</a>
+            <nav>
+                <a href="blades/index.html">Blades Calendar</a>
+                <a href="autograph/index.html">AutoGraph</a>
+            </nav>
+        </header>
         <main>
-            <header>
-                <h1>RedTheFedoraShark</h1>
-            </header>
-            <div id="dummy"></div>
-            <section id="menu">
-                <!-- <a href="ants/ants.html">Ants!</a>
-                <a href="trains/trains.html">Trains!</a> -->
-            </section>
-            <section id="grid">
-                <a id="tile" href="blades"><img src="ants/ant_big.png"></a>
-            </section>
+            <nav class="menu">
+                <button class="selector" id="selected">About</button>
+                <button class="selector" >Blades in the Dark <br> Calendar</button>
+            </nav>
+            <section id="content" ></section>
+
+            <script src="res/main.js" type="module"></script>
         </main>
+        <footer>
+            
+        </footer>
     </body>
 </html>

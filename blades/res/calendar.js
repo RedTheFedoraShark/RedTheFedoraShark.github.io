@@ -187,13 +187,13 @@ for (let i = 12; i < 77; i++)
     weeks[i].appendChild(weeks[i].etitle)
     
     weeks[i].no.textContent = `${data.weeks[it].week}`
-    weeks[i].no.style.margin = '13px 10px 1px 13px'
+    weeks[i].no.style.margin = '10px 0px 0px 10px'
     weeks[i].no.style.fontSize = '18px'
     weeks[i].no.style.opacity = '1'
     
     weeks[i].desc.textContent = `${data.weeks[it].desc}`
     weeks[i].desc.style.textAlign = 'right'
-    weeks[i].desc.style.margin = '5px'
+    weeks[i].desc.style.margin = '1px'
     weeks[i].desc.style.fontSize = '15px'
     weeks[i].desc.style.opacity = '0.81'
 

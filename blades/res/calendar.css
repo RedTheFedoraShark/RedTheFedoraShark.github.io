@@ -21,6 +21,7 @@ main {
     display: flex;
     flex-direction: row;
     width: 100%;
+    min-height: calc(100vh - 51px);
 }
 
 h2, h4{
@@ -28,16 +29,16 @@ h2, h4{
     font-variant: small-caps;
 }
 
-a {
+.a {
     color: rgb(0, 157, 255);
     text-decoration: underline;
 }
 
-a:hover {
+.a:hover {
     color: rgba(0, 157, 255, 0.527);
 }
 
-a:visited {
+.a:visited {
     color: rgb(0, 81, 255);
 }
 
@@ -119,7 +120,7 @@ a:visited {
 }
 
 #sidepanel {
-    padding: 15px;
+    padding: 1rem;
     width: 500px;
     color: white;
     background-image: linear-gradient(180deg, #0d0e13, #2b2c31 80%);
@@ -137,6 +138,8 @@ a:visited {
 }
 
 #about {
+    padding: 1rem 1rem 1rem 1rem;
+    font-size: 0.9rem;
     background-color: inherit;
     border: none;
     font-family: Cambria;
@@ -147,7 +150,16 @@ a:visited {
 
 #about:hover {
     background-color: #63636e8f;
+    color: white;
 }
+.anav { 
+    text-decoration: none; 
+    font-family: Cambria;
+    font-variant: small-caps;
+    font-weight: bold;
+    color: white;}
+.anav:hover { color: white; }
+.anav:visited {}
 
 @keyframes popup {
     from {
