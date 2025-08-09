@@ -81,7 +81,7 @@ async function init()
     }, 3400)
 
     await setTimeout(async () => {
-        history.push(`LanceOS 0.8.911 EXPERIMENTAL`)
+        history.push(`LanceOS 0.2.5 EXPERIMENTAL`)
         history.push(getTime())
         newline = true
         responded = true
