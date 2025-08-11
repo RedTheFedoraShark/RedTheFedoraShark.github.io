@@ -32,8 +32,7 @@ let cwd = []
 let mode = 'cmd'
 let clearout = false
 let history = []
-let newline = false
-let responded = false
+let historyLength = 0
 let guif = false 
 let files = []
 // #######################
@@ -43,14 +42,11 @@ let files = []
 
 async function init()
 {
-
     history.push('! establishing encrypted connection...')
-    newline = true
     await display()
 
     await setTimeout(async () => {
         history.push('! mounting remote file stystem...')
-        newline = true
         await display()
         await mount()
         index()
@@ -58,44 +54,34 @@ async function init()
     
     await setTimeout(async () => {
         history.push('! indexing...')
-        newline = true
         await display()
     }, 2000)
 
     await setTimeout(async () => {
         history.push('! engaging face recognition module...')
-        newline = true
         await display()
     }, 2700)
 
     await setTimeout(async () => {
         history.push('! facial features... match')
-        newline = true
         await display()
     }, 3200)
     
     await setTimeout(async () => {
         history.push('! logging in as lancer@pda...')
-        newline = true
         await display()
     }, 3400)
 
     await setTimeout(async () => {
         history.push(`LanceOS 0.2.5 EXPERIMENTAL`)
         history.push(getTime())
-        newline = true
-        responded = true
-        await display()
         history.push('Welcome, Lancer')
         history.push(`Please type 'help' to access the in-built manual.`)
-        newline = true
-        responded = true
         input.style.fontSize = '10pt'
         cpath = '/'
         await display()
 
     }, 3600)
-    
 }
 
 
@@ -124,6 +110,15 @@ function compareFiles(a, b)
         return -1
     if (a.type == 'file' && b.type == 'directory')
         return 1
+    
+    let an = a.name.toLowerCase()
+    let bn = b.name.toLowerCase()
+
+    if (an < bn)
+        return -1
+    if (bn < an)
+        return 1
+
     return 0;
 }
 
@@ -139,6 +134,7 @@ function index()
     }   
     console.log(indexes)
 }
+
 
 function find(path) 
 // return -1 if not found
@@ -240,21 +236,13 @@ async function buildDisplay(space, data, path, mode)
         } 
         if (!space.contains(input)) 
             space.appendChild(input)
-        if (responded)
+        for (; historyLength < history.length; historyLength++)
         {
             const s = document.createElement('span')
-            const t = document.createTextNode(history.at(-2))
+            const t = document.createTextNode(history[historyLength])
             s.appendChild(t)
+            space.appendChild(s, input)
             space.insertBefore(s, input)
-            responded = false
-        }
-        if (newline)
-        {
-            const s = document.createElement('span')
-            const t = document.createTextNode(history.at(-1))
-            s.appendChild(t)
-            space.insertBefore(s, input)
-            newline = false
         }
         return
     }
@@ -276,16 +264,21 @@ async function buildDisplay(space, data, path, mode)
     {
         if (i == selected && highlight)
         {
-            space.innerHTML+=`<span class='${wd[i].type} selected'>${wd[i].name}</span> <br>`
+            space.innerHTML+=`<span class='fs ${wd[i].type} selected'>${wd[i].name}</span> <br>`
             highlight = false
         }
         else 
-            space.innerHTML+=`<span class='${wd[i].type}'>${wd[i].name}</span> <br>`
-    }  
+            space.innerHTML+=`<span class='fs ${wd[i].type}'>${wd[i].name}</span> <br>`
+    }
+    let elements = document.querySelectorAll('.fs')
+    for (let i = 0; i < elements.length; i++)
+    {
+        elements[i].onclick = async () => { await touchscreen(wd[i], i) }, false
+    }
 }
 
 
-async function open(path)
+async function open(path, depth=0)
 {
     // console.log('OPEN')
     // console.log(`PATH: ${path}`)
@@ -296,7 +289,6 @@ async function open(path)
         return null
     // console.log(`INDEX: ${i}`)
     let file = files[i]
-
     switch(file.type)
     {
         case 'directory':
@@ -328,7 +320,7 @@ async function open(path)
             if (p[p.length-1] == '') p.pop(-1)
             p.pop(-1)
             path = `${p.join('/')}/`
-            return await open(path)
+            return await open(path, 1)
 
         default:
             break;
@@ -350,17 +342,12 @@ async function execute(command)
 {
     if (!command) 
         return
-
+    let response = null
     command = command.split(' ')    
     switch(command[0])
     {
         case 'time':
             history.push(getTime())
-            responded = true
-            break;
-        
-        case 'gui':
-            gui()
             break;
 
         case 'help':
@@ -368,52 +355,68 @@ async function execute(command)
                 command.push('/help')
             else command[1] = '/help'
 
-        case 'open':
-            try {
-                if (command[1][0] != '/')
-                    command[1] = cpath + command[1]
-                let response = await open(command[1])
-                // console.log(response)
-                if (response == null)
+        case 'read':
+            if (command.length < 2)
+                command.push(cwd[selected].name)
+
+            if (command[1][0] != '/')
+                command[1] = cpath + command[1]
+            response = await open(command[1])
+            if (response == null)
+            {
+                history.push(` Can't find path '${command[1]}'`)
+                break;
+            }
+            if (response[0] == 'd')
+            {
+                history.push(command[1])
+                for (let i = 0; i < response[2].length-1; i++)
                 {
-                    history.push(` Can't find path '${command[1]}'`)
-                    responded = true
-                    break;
+                    history.push(`  ├─ ${response[2][i].name}`)
                 }
-                if (response[0] == 'd')
-                    cpath = response[1]
-                else 
+                history.push(`  └─ ${response[2].at(-1).name}`)
+                break;
+            }
+            history.push(response[2])
+            break;
+
+        case 'open':
+            if (command.length < 2)
+                command.push('')
+            if (command[1][0] != '/')
+                command[1] = cpath + command[1]
+            response = await open(command[1])
+            // console.log(response)
+            if (response == null)
+            {
+                history.push(` Can't find path '${command[1]}'`)
+                break;
+            }
+            if (response[0] == 'd')
+                cpath = response[1]
+            else 
+            {
+                let p = response[1].split('/')
+                let f = p.at(-1)
+                p.pop(-1)
+                cpath = p.join('/') + '/'
+                let r = await open(cpath)
+                for (let i = 0; i < r[2].length; i++)
                 {
-                    let p = response[1].split('/')
-                    let f = p.at(-1)
-                    p.pop(-1)
-                    cpath = p.join('/') + '/'
-                    let r = await open(cpath)
-                    for (let i = 0; i < r[2].length; i++)
+                    if (f == r[2][i].name) 
                     {
-                        if (f == r[2][i].name) 
-                        {
-                            selected = i
-                            break;
-                        }
+                        selected = i
+                        break;
                     }
                 }
-                mode = 'fs'       
             }
-            catch (e) { console.log(e); history.push(` FAILED TO OPEN THE FILE.`); responded = true}
+            mode = 'fs'       
             break;
 
         default:
             history.push(` Command '${command[0]}' not found.`)
-            responded = true
             break;
     }
-}
-
-
-function gui()
-{
-    return
 }
 
 
@@ -432,7 +435,14 @@ await init()
 // #       EVENTS        #
 // #######################
 
-onkeydown = async (event) => {
+onkeydown = async (event) => { key(event) }, false
+
+
+ribbon.onclick = async () => {mode = 'fs'; await display()}, false
+
+
+async function key(event, touch=false) 
+{
     switch(event.key)
     {
         case 'ArrowDown':
@@ -443,15 +453,19 @@ onkeydown = async (event) => {
             selected -= (selected == 0) ? 0 : 1;
             break;
 
+        case 'ArrowRight':
+            if (mode != 'fs')
+                break;
         case 'Enter':
-            if (mode == 'cmd')
+            if (mode == 'cmd' && !touch)
             {
-                history.push(input.innerHTML.replace('lancer@PDA $ ', '> '))
-                await execute(input.innerHTML.replace('lancer@PDA $ ', ''))
-                input.innerHTML = 'lancer@PDA $ '
-                newline = true
+                history.push(input.innerHTML.replace(`<span style="color:aqua;">lancer</span>@<span style="color:orange;">PDA~$ </span>`, '> '))
+                await execute(input.innerHTML.replace(`<span style="color:aqua;">lancer</span>@<span style="color:orange;">PDA~$ </span>`, ''))
+                input.innerHTML = `<span style='color:aqua;'>lancer</span>@<span style='color:orange;'>PDA~$ </span>`
                 break;
             }
+            if (touch && mode != 'fs')
+                mode = 'fs'
             let path = `${cwd[selected].path}${cwd[selected].name}`
             let i = find(path)
             if (i == -1)
@@ -464,6 +478,7 @@ onkeydown = async (event) => {
             selected = 0
             break;
 
+        case 'ArrowLeft':
         case 'Backspace':
             if (mode == 'fs') 
                 await exit()
@@ -490,4 +505,16 @@ onkeydown = async (event) => {
             break;
     }
     await display()
-}, false
+}
+
+
+async function touchscreen(file, index) 
+{
+    if (selected != index)
+    {
+        selected = index
+        await display()
+        return
+    }
+    await key({key: 'Enter'}, true)
+}
