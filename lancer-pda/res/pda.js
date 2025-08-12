@@ -29,12 +29,30 @@ let highlight = false
 let indexes = []
 let cpath = ''
 let cwd = []
+let cft = null
 let mode = 'cmd'
 let clearout = false
 let history = []
 let historyLength = 0
-let guif = false 
 let files = []
+let cursorCounter = 0
+let directoryChanged = true
+
+
+// #######################
+// #        INIT         #
+// #######################
+
+await init()
+await setInterval(async () => {
+    cursorCounter = (cursorCounter == 6) ? 0 : cursorCounter+1
+    if (cursorCounter == 0) 
+        input.innerHTML += '_'
+    if (cursorCounter== 3 && input.innerHTML.at(-1) == '_')
+        input.innerHTML = input.innerHTML.slice(0, -1)
+    await display()
+}, 100)
+
 // #######################
 // #      FUNCTIONS      #
 // #######################
@@ -43,33 +61,27 @@ let files = []
 async function init()
 {
     history.push('! establishing encrypted connection...')
-    await display()
 
     await setTimeout(async () => {
         history.push('! mounting remote file stystem...')
-        await display()
         await mount()
         index()
     }, 1000)
     
     await setTimeout(async () => {
         history.push('! indexing...')
-        await display()
     }, 2000)
 
     await setTimeout(async () => {
         history.push('! engaging face recognition module...')
-        await display()
     }, 2700)
 
     await setTimeout(async () => {
         history.push('! facial features... match')
-        await display()
     }, 3200)
     
     await setTimeout(async () => {
         history.push('! logging in as lancer@pda...')
-        await display()
     }, 3400)
 
     await setTimeout(async () => {
@@ -79,7 +91,6 @@ async function init()
         history.push(`Please type 'help' to access the in-built manual.`)
         input.style.fontSize = '10pt'
         cpath = '/'
-        await display()
 
     }, 3600)
 }
@@ -188,19 +199,17 @@ async function display()
     // reset highlight flag
     highlight = true
     
-    // console.log('LEFT DISPLAY')
-
     // build left space and update globals
-    response = await open(cpath)
-    if (response != null)
+    if (directoryChanged)
     {
-        cwd = response[2]   
-        await buildDisplay(left, cwd, cpath, response[0])
+        response = await open(cpath)
+        if (response != null) 
+        {
+            cft = response[0]
+            cwd = response[2]   
+        }
     }
-
-    // console.log('RIGHT DISPLAY')
-    // console.log(cwd)
-    // console.log(`SELECTED: ${selected}`)
+    await buildDisplay(left, cwd, cpath, cft)
 
     // build right panel
     switch (mode)
@@ -422,14 +431,11 @@ async function execute(command)
 
 function typing(sigil)
 {
+    if (input.innerHTML.at(-1) == '_')
+        input.innerHTML = input.innerHTML.slice(0, -1)
     input.innerHTML += sigil
 }
 
-// #######################
-// #        INIT         #
-// #######################
-
-await init()
 
 // #######################
 // #       EVENTS        #
@@ -438,7 +444,7 @@ await init()
 onkeydown = async (event) => { key(event) }, false
 
 
-ribbon.onclick = async () => {mode = 'fs'; await display()}, false
+ribbon.onclick = async () => { mode = 'fs' }, false
 
 
 async function key(event, touch=false) 
@@ -481,9 +487,17 @@ async function key(event, touch=false)
         case 'ArrowLeft':
         case 'Backspace':
             if (mode == 'fs') 
+            {
                 await exit()
-            if (mode == 'cmd' && input.innerHTML.length > 13) 
-                input.innerHTML = input.innerHTML.slice(0, -1)
+                break
+            }
+            if (input.innerHTML.length > 13) 
+            {
+                if (input.innerHTML.at(-1) == '_')
+                    input.innerHTML = input.innerHTML.slice(0, -2)
+                else
+                    input.innerHTML = input.innerHTML.slice(0, -1)
+            }
             break;
 
         case 'Escape':
@@ -504,7 +518,6 @@ async function key(event, touch=false)
             // console.log(event.key)
             break;
     }
-    await display()
 }
 
 
@@ -513,7 +526,6 @@ async function touchscreen(file, index)
     if (selected != index)
     {
         selected = index
-        await display()
         return
     }
     await key({key: 'Enter'}, true)
