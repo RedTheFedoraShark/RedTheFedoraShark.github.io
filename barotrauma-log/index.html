@@ -5,35 +5,38 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
         <title>Barotrauma Logs</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel='stylesheet' type='text/css' media='screen' href='./res/barotrauma.css'>
+        <link rel='stylesheet' type='text/css' media='screen' href='./res/css/main.css'>
+        <link class='altcss' rel='stylesheet' type='text/css' media='screen' href='./res/css/black-blue.css'>
+        <link class='altcss' rel='stylesheet alternate' type='text/css' media='screen' href='./res/css/white-red.css'>
+        <link class='altcss' rel='stylesheet alternate' type='text/css' media='screen' href='./res/css/green-purple.css'>
         <link rel='icon' type='image/x-icon' href='./res/img/barotrauma.svg'>
     </head>
 
     <body>
         <main id="main">
             <div id="sidepanel">
+                <nav> 
+                    <!-- <a class="anav" href="../"><button class="about">Home page</button> </a> -->
+                    <!-- <button class="about" id=""> Dziaba</button>  -->
+                    <button class="about" id="change-color">color<br>Black & Blue</button>
+                </nav>
                 <h2 id="title">Logbook</h2>
                 <image id="image" alt=""></image>
                 <div id="content"></div>
             </div>
-            
+            <div id="border"></div>
             <div id="scrollcontainer">
-                <nav> 
-                    <a class="anav" href="../"><button id="about">Home page</button> </a> 
-                    <button id="about">Settings</button>
-                </nav>
-                
-                <div id="entry">aa</div>
+                <div id="entry"></div>
             </div>
             
             <div id="popup"></div>
             <script src='./res/jquery-4.0.0.min.js' type='module'></script>
             <script src='./res/barotrauma.js' type='module'></script>
         </main>
-            <footer>
-                <span class="footer-text">Copyright 2024 Szymon Czerwiński under MIT licence</span><br>
-                <span class="footer-text">Icon via iconoir.com and is not part of the licensed material</span><br>
+            <!-- <footer> -->
+                <!-- <span class="footer-text">Copyright 2024 Szymon Czerwiński under MIT licence</span><br> -->
+                <!-- <span class="footer-text">Icon via iconoir.com and is not part of the licensed material</span><br> -->
                 <!-- <span class="footer-text">Blades in the Dark is the creation of John Harper and I am in no way affiliated with him or his work.</span><br> -->
-            </footer>
+            <!-- </footer> -->
     </body>
 </html>

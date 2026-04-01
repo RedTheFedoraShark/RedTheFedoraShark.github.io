@@ -1,0 +1,33 @@
+:root {
+    --bg-color: #19191c;
+    --fg-color: rgb(0, 166, 255); 
+    --hv-color: rgba(255, 255, 255, 0.2)
+}
+
+body {
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+}
+
+nav, button, a {
+    color: var(--fg-color);
+}
+
+.log-entry:hover {
+    background-color: var(--hv-color);
+}
+
+.about:hover {
+    background-color: var(--hv-color);
+    color: white;
+}
+
+#sidepanel {
+    background-color: var(--bg-color);
+}
+
+#border {
+    background-color: var(--fg-color);
+    width: 1px;
+    
+}

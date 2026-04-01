@@ -136,7 +136,6 @@ for (let i = 1; i < 11; i++)
     weeks[i].style.textAlign = 'center'
     weeks[i].desc.textContent = romanise(i)
     weeks[i].desc.style.marginTop = `35px`
-
 }
 
 /* Y axis - month names */
