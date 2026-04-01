@@ -42,14 +42,43 @@ function cycleCss(init = false) {
 function addPopdown(event)
 {
     event.target.className += ' log-entry-popdown' 
-    print(1)
     event.target.removeEventListener('mouseenter', addPopdown)
+}
+
+async function initSidepanel(path)
+{
+    let response = await fetch(path)
+    let data = await response.json()
+    entries = data.entries
+    sidepanel.entries = new Array()
+    sidepanel.content.innerHTML = ''
+    for (let e in entries)
+    {
+        sidepanel.entries.push(document.createElement('div')) 
+        let bookmark = sidepanel.entries[sidepanel.entries.length - 1]
+        bookmark.className = 'log-entry'
+        bookmark.path = entries[e].path
+        bookmark.index = e
+        bookmark.innerHTML = entries[e].title
+        bookmark.addEventListener('click', select)
+        bookmark.addEventListener('mouseenter', addPopdown)
+        sidepanel.content.appendChild(bookmark)
+    }
+}
+
+async function changeLogbook(event)
+{
+    document.querySelector('#title').innerHTML = event.target.innerHTML
+    print(event.target.getAttribute('path'))
+    await initSidepanel(event.target.getAttribute('path'))
+    select({target: sidepanel.entries[0]})
+
+
 }
 
 /* setup constants */
 
-let response = await fetch('./res/entrylist.json')
-const data = await response.json()
+let entries = null
 const scrollContainer = document.querySelector("#scrollcontainer")
 const entry = document.querySelector("#entry")
       entry.jq = $("#entry")
@@ -57,7 +86,6 @@ const entry = document.querySelector("#entry")
 const sidepanel = document.querySelector("#sidepanel")
       sidepanel.content = document.querySelector("#content")
 // const about = document.querySelector("#about")
-const entries = data.entries
 const _404 = './res/entries/404.html'
 const colorSwitch = document.querySelector('#change-color')
 let selected = {id: 1}
@@ -72,8 +100,7 @@ const colorSets = [
 {
     let links = document.querySelectorAll('.altcss')
     currentCss = parseInt(localStorage.getItem('currentCss')) ?? 0
-    
-    print(links)
+
     for (let l in links)
     {
         try { colorSets[l].link = links[l] }
@@ -83,21 +110,19 @@ const colorSets = [
     colorSwitch.addEventListener('click', cycleCss)
 }
 
-/* setup sidepanel contents */
-sidepanel.entries = new Array()
-for (let e in entries)
 {
-    sidepanel.entries.push(document.createElement('div')) 
-    let bookmark = sidepanel.entries[sidepanel.entries.length - 1]
-    bookmark.className = 'log-entry'
-    bookmark.path = entries[e].path
-    bookmark.index = e
-    bookmark.innerHTML = entries[e].title
-    bookmark.addEventListener('click', select)
-    bookmark.addEventListener('mouseenter', addPopdown)
-    sidepanel.content.appendChild(bookmark)
+    let logbooks = document.querySelectorAll('.log-selector')
+    for (let l in logbooks)
+    {
+        try { 
+            logbooks[l].addEventListener('click', changeLogbook)    
+        }
+        catch (e) { break }
+    }
+    print(logbooks)
 }
 
+await initSidepanel('./res/json/testlist.json')
 select({target: sidepanel.entries[0]})
 styleUpdate()
 

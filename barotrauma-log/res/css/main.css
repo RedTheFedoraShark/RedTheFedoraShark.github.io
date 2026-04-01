@@ -23,15 +23,26 @@ main {
     overflow: hidden;
 }
 
+h2, h4 {
+    text-align: center;
+    font-variant: small-caps;
+}
+
 nav {
+    transform: rotateX(180deg);
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-h2, h4 {
-    text-align: center;
-    font-variant: small-caps;
+#navcontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+#navscrollcontainer {
+    transform: rotateX(180deg);
+    overflow: scroll;
 }
 
 .log-entry {

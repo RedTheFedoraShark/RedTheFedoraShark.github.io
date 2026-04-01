@@ -15,11 +15,16 @@
     <body>
         <main id="main">
             <div id="sidepanel">
-                <nav> 
-                    <!-- <a class="anav" href="../"><button class="about">Home page</button> </a> -->
-                    <!-- <button class="about" id=""> Dziaba</button>  -->
+                <div id="navcontainer">
                     <button class="about" id="change-color">color<br>Black & Blue</button>
-                </nav>
+                    <div id="navscrollcontainer">
+                        <nav> 
+                            <!-- <a class="anav" href="../"><button class="about">Home page</button> </a> -->
+                            <button class="about log-selector" id="test-list" path="./res/json/testlist.json"> Test Logbook</button> 
+                            <button class="about log-selector" id="2024" path="./res/json/2024.json"> 2024 Logs</button> 
+                        </nav>
+                    </div>
+                </div>
                 <h2 id="title">Logbook</h2>
                 <image id="image" alt=""></image>
                 <div id="content"></div>
