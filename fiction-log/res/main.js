@@ -126,7 +126,10 @@ let logbooks = document.querySelectorAll('.log-selector')
     await changeLogbook({target: logbooks[lastLogbook]})
 
 styleUpdate()
-
+document.querySelector('#hide').addEventListener('click', (event) => {
+    sidepanel.style.display = (sidepanel.style.display == 'none') ? 'flex' : 'none'
+    event.target.innerHTML = (sidepanel.style.display == 'none') ? 'show side panel' : 'hide side panel'
+})
 
 /* global event listeners */
 onresize = (event) => { styleUpdate() }

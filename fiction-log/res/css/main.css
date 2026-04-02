@@ -141,6 +141,8 @@ nav {
 }
 
 #sidepanel {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     width: 500px;
     text-align: justify;
