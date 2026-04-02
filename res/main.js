@@ -90,9 +90,9 @@ const colorSwitch = document.querySelector('#change-color')
 let selected = {id: 1}
 let currentCss = 0
 const colorSets = [
-    {name: 'Black & Blue', link: ''},
-    {name: 'White & Red', link: ''},
-    {name: 'Green & Purple', link: ''}
+    {name: 'Graphite & Blue', link: ''},
+    {name: 'Black & Green', link: ''},
+    {name: 'White & Red', link: ''}
 ]
 
 let logbooks = document.querySelectorAll('.log-selector')

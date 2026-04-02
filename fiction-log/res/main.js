@@ -91,8 +91,8 @@ const colorSwitch = document.querySelector('#change-color')
 let selected = (localStorage.getItem('selected') == undefined) ? 0 : parseInt(localStorage.getItem('selected')) 
 let currentCss = 0
 const colorSets = [
-    {name: 'Black & Blue', link: ''},
-    {name: 'Black & Green', link: ''},
+    {name: 'Graphite & Blue', link: ''},
+    {name: 'Black & Green<br>flashbang warning', link: ''},
     {name: 'White & Red', link: ''}
 ]
 
