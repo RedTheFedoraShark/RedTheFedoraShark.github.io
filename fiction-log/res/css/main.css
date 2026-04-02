@@ -45,6 +45,11 @@ nav {
     overflow: scroll;
 }
 
+.log-selector {
+    min-width: 8rem;
+    max-width: 8rem;
+}
+
 .log-entry {
     padding: 1rem;
     border-width: 1px 0px 0px 0px;
@@ -85,6 +90,12 @@ nav {
     color: white;}
 .anav:hover { color: white; }
 .anav:visited {}
+
+#settingscontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 
 #change-color {
     margin-left: auto;

@@ -69,11 +69,9 @@ async function initSidepanel(path)
 async function changeLogbook(event)
 {
     document.querySelector('#title').innerHTML = event.target.innerHTML
-    print(event.target.getAttribute('path'))
     await initSidepanel(event.target.getAttribute('path'))
     select({target: sidepanel.entries[0]})
-
-
+    localStorage.setItem('lastLogbook', event.target.selfIndex)
 }
 
 /* setup constants */
@@ -87,6 +85,7 @@ const sidepanel = document.querySelector("#sidepanel")
       sidepanel.content = document.querySelector("#content")
 // const about = document.querySelector("#about")
 const _404 = './res/entries/404.html'
+
 const colorSwitch = document.querySelector('#change-color')
 let selected = {id: 1}
 let currentCss = 0
@@ -96,11 +95,13 @@ const colorSets = [
     {name: 'Green & Purple', link: ''}
 ]
 
+let logbooks = document.querySelectorAll('.log-selector')
+
 /* setup colorSets */
 {
     let links = document.querySelectorAll('.altcss')
-    currentCss = parseInt(localStorage.getItem('currentCss')) ?? 0
-
+    currentCss = (localStorage.getItem('currentCss') == undefined) ? 0 : parseInt(localStorage.getItem('currentCss'))
+    
     for (let l in links)
     {
         try { colorSets[l].link = links[l] }
@@ -110,21 +111,26 @@ const colorSets = [
     colorSwitch.addEventListener('click', cycleCss)
 }
 
-{
-    let logbooks = document.querySelectorAll('.log-selector')
+/* setup logbrowser */
+
     for (let l in logbooks)
     {
         try { 
-            logbooks[l].addEventListener('click', changeLogbook)    
+            logbooks[l].addEventListener('click', changeLogbook) 
+            logbooks[l].selfIndex = l
         }
         catch (e) { break }
     }
-    print(logbooks)
-}
+    let lastLogbook = (localStorage.getItem('lastLogbook') == undefined) ? 0 : localStorage.getItem('lastLogbook')
+    await changeLogbook({target: logbooks[lastLogbook]})
 
-await initSidepanel('./res/json/testlist.json')
+
 select({target: sidepanel.entries[0]})
 styleUpdate()
+
+document.querySelector('#clear-localstorage').addEventListener('click', () => {
+    localStorage.clear()
+})
 
 /* global event listeners */
 onresize = (event) => { styleUpdate() }
