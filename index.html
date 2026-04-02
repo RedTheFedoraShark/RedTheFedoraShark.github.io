@@ -1,31 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link  rel="stylesheet" href="res/style.css">
-        <title>RedTheFedoraShark</title>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Fiction Logs</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='./res/css/main.css'>
+        <link class='altcss' rel='stylesheet' type='text/css' media='screen' href='./res/css/black-blue.css'>
+        <link class='altcss' rel='stylesheet alternate' type='text/css' media='screen' href='./res/css/white-red.css'>
+        <link class='altcss' rel='stylesheet alternate' type='text/css' media='screen' href='./res/css/green-purple.css'>
+        <link rel='icon' type='image/x-icon' href='./res/img/barotrauma.svg'>
     </head>
-    <body>
-        <header>
-            <a id="homepage" href="#">RedTheFedoraShark</a>
-            <nav>
-                <a href="blades/">Blades Calendar</a>
-                <a href="autograph/">AutoGraph</a>
-            </nav>
-        </header>
-        <main>
-            <nav class="menu">
-                <button class="selector" id="selected">About</button>
-                <button class="selector" >Blades in the Dark <br> Calendar</button>
-            </nav>
-            <section id="content" ></section>
 
-            <script src="res/main.js" type="module"></script>
-        </main>
-        <footer>
+    <body>
+        <main id="main">
+            <div id="sidepanel">
+                <div id="navcontainer">
+                    <div id="settingscontainer">
+                        <button class="about" id="clear-localstorage">clear<br>saved settings</button>
+                        <button class="about" id="change-color">color<br>Black & Blue</button>
+                    </div>
+                    <div id="navscrollcontainer">
+                        <nav> 
+                            <!-- <a class="anav" href="../"><button class="about">Home page</button> </a> -->
+                            <button class="about log-selector" id="About" path="./res/json/testlist.json"> About my project</button>
+                            <a style="margin-left: auto ;" href="https://github.com/RedTheFedoraShark"><button class="about" id="About"> Github profile</button></a>
+                        </nav>
+                    </div>
+                </div>
+                <h2 id="title"></h2>
+                <image id="image" alt=""></image>
+                <div id="content"></div>
+            </div>
+            <div id="border"></div>
+            <div id="scrollcontainer">
+                <div id="entry"></div>
+            </div>
             
-        </footer>
+            <div id="popup"></div>
+            <script src='./res/jquery-4.0.0.min.js' type='module'></script>
+            <script src='./res/main.js' type='module'></script>
+        </main>
     </body>
 </html>

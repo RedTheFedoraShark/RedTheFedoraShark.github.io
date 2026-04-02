@@ -1,0 +1,11 @@
+{
+    "entries": [
+        { "title": "About", "path": "./res/entries/about.html" },   
+        { "title": "Blades Calendar", "path": "./res/entries/blades.html" },   
+        { "title": "Lancer PDA", "path": "./res/entries/lancer.html" },   
+        { "title": "Fiction Log", "path": "./res/entries/fiction.html" },   
+        { "title": "PiSARZ", "path": "./res/entries/pisarz.html" },   
+        { "title": "Micro Sound", "path": "./res/entries/microsoundut.html" },   
+        { "title": "Pax Bot", "path": "./res/entries/paxbot.html" }
+    ]
+}
