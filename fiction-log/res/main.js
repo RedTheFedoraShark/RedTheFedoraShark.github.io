@@ -1,19 +1,20 @@
+document.querySelector('#clear-localstorage').addEventListener('click', () => {
+    localStorage.clear()
+})
+
 const print = console.log
-
-function updatePanel(event)
-{   
-
-}
 
 function select(event)
 {
+    // print(`Current Selected: ${selected}`)
     entry.jq.load(event.target.path, (response, status, xhr) => {
         if (status == 'error') entry.jq.load(_404)
     })
-    selected.id = 'deselected'
+    sidepanel.entries[selected].id = 'deselected'
     event.target.id = 'selected'
-    selected = event.target
-    updatePanel(event)
+    selected = event.target.index
+    // print(`New Selected ${selected}`)
+    localStorage.setItem('selected', selected)
 }
 
 /* What is this fucking magic? */
@@ -70,7 +71,7 @@ async function changeLogbook(event)
 {
     document.querySelector('#title').innerHTML = event.target.innerHTML
     await initSidepanel(event.target.getAttribute('path'))
-    select({target: sidepanel.entries[0]})
+    select({target: sidepanel.entries[selected]})
     localStorage.setItem('lastLogbook', event.target.selfIndex)
 }
 
@@ -87,7 +88,7 @@ const sidepanel = document.querySelector("#sidepanel")
 const _404 = './res/entries/404.html'
 
 const colorSwitch = document.querySelector('#change-color')
-let selected = {id: 1}
+let selected = (localStorage.getItem('selected') == undefined) ? 0 : parseInt(localStorage.getItem('selected')) 
 let currentCss = 0
 const colorSets = [
     {name: 'Black & Blue', link: ''},
@@ -124,13 +125,8 @@ let logbooks = document.querySelectorAll('.log-selector')
     let lastLogbook = (localStorage.getItem('lastLogbook') == undefined) ? 0 : localStorage.getItem('lastLogbook')
     await changeLogbook({target: logbooks[lastLogbook]})
 
-
-select({target: sidepanel.entries[0]})
 styleUpdate()
 
-document.querySelector('#clear-localstorage').addEventListener('click', () => {
-    localStorage.clear()
-})
 
 /* global event listeners */
 onresize = (event) => { styleUpdate() }

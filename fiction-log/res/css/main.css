@@ -45,6 +45,13 @@ nav {
     overflow: scroll;
 }
 
+.about-content {
+    width: 75%; 
+    margin: auto; 
+    text-align: justify;
+    padding-top: 2rem;
+}
+
 .log-selector {
     min-width: 8rem;
     max-width: 8rem;
