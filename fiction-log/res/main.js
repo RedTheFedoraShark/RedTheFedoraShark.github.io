@@ -92,8 +92,8 @@ let selected = (localStorage.getItem('selected') == undefined) ? 0 : parseInt(lo
 let currentCss = 0
 const colorSets = [
     {name: 'Black & Blue', link: ''},
-    {name: 'White & Red', link: ''},
-    {name: 'Green & Purple', link: ''}
+    {name: 'Black & Green', link: ''},
+    {name: 'White & Red', link: ''}
 ]
 
 let logbooks = document.querySelectorAll('.log-selector')
