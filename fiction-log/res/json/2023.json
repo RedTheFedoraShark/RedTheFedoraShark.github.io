@@ -1,9 +1,9 @@
 {
     "entries": [
         { "title": "About", "path": "./res/entries/about-2023.html" },
-        { "title": "Entry 25-03-77", "path": "./res/entries/25-03-77.html" },
-        { "title": "Entry 03-04-77", "path": "./res/entries/03-04-77.html" },
-        { "title": "Entry 12-01-79", "path": "./res/entries/12-01-79.html" },
-        { "title": "Entry 26-01-79", "path": "./res/entries/26-01-79.html" }
+        { "title": "Entry 25-03-77", "path": "./res/entries/sl-25-03-77.html" },
+        { "title": "Entry 03-04-77", "path": "./res/entries/sl-03-04-77.html" },
+        { "title": "Entry 12-01-79", "path": "./res/entries/sl-12-01-79.html" },
+        { "title": "Entry 26-01-79", "path": "./res/entries/sl-26-01-79.html" }
     ]
 }

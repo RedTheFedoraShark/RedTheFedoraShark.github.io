@@ -11,8 +11,11 @@ function select(event)
         if (status == 'error') entry.jq.load(_404)
     })
     sidepanel.entries[selected].id = 'deselected'
+    sidepanel.selectMarkers[selected].style.display = 'none'
+    
     event.target.id = 'selected'
     selected = event.target.index
+    sidepanel.selectMarkers[selected].style.display = 'flex'
     // print(`New Selected ${selected}`)
     localStorage.setItem('selected', selected)
 }
@@ -27,14 +30,25 @@ function styleUpdate()
     let w = (window.innerWidth - sidepanel.getBoundingClientRect().right)/2 -1250/2 -10*9/2 
     entry.style.marginLeft = `${(w > 0) ? w : 10}px`
     entry.style.marginRight = `${(w > 0) ? w : 10}px`
+
+    moveHideButton()
+}
+
+function moveHideButton()
+{
+    hide.style.marginLeft = `${sidepanel.offsetWidth}px`
 }
 
 function cycleCss(init = false) {
-    colorSets[currentCss].link.rel = 'stylesheet alternate'
-    if (typeof(init) != 'boolean') currentCss += 1
-    if (currentCss >= colorSets.length)
-        currentCss = 0
-    colorSets[currentCss].link.rel = 'stylesheet'
+    let nextCss = (typeof(init) != 'boolean') ? currentCss + 1 : currentCss
+    if (nextCss >= colorSets.length)
+        nextCss = 0
+
+    colorSets[nextCss].link.rel = 'stylesheet'
+    if (typeof(init) != 'boolean')
+        colorSets[currentCss].link.rel = 'stylesheet alternate'
+
+    currentCss = nextCss
     colorSwitch.innerHTML = `color<br>${colorSets[currentCss].name}`
     
     localStorage.setItem('currentCss', currentCss)
@@ -60,11 +74,24 @@ async function initSidepanel(path)
         bookmark.className = 'log-entry'
         bookmark.path = entries[e].path
         bookmark.index = e
-        bookmark.innerHTML = entries[e].title
         bookmark.addEventListener('click', select)
         bookmark.addEventListener('mouseenter', addPopdown)
+        bookmark.style.display = 'flex'
+        
+        let marker = document.createElement('div')
+        marker.className = 'marker'
+        marker.style.marginLeft = 'auto'
+        marker.style.display = 'none'
+        marker.innerHTML = '< '
+        
+        let title = document.createElement('div')
+        title.innerHTML = entries[e].title
+
+        bookmark.appendChild(title)
+        bookmark.appendChild(marker)
         sidepanel.content.appendChild(bookmark)
     }
+    sidepanel.selectMarkers = document.querySelectorAll('.marker')
 }
 
 async function changeLogbook(event)
@@ -76,17 +103,16 @@ async function changeLogbook(event)
 }
 
 /* setup constants */
-
 let entries = null
 const scrollContainer = document.querySelector("#scrollcontainer")
 const entry = document.querySelector("#entry")
-      entry.jq = $("#entry")
+entry.jq = $("#entry")
 // const popup = document.querySelector("#popup")
 const sidepanel = document.querySelector("#sidepanel")
-      sidepanel.content = document.querySelector("#content")
+sidepanel.content = document.querySelector("#content")
 // const about = document.querySelector("#about")
 const _404 = './res/entries/404.html'
-
+const hide = document.querySelector('#hide')
 const colorSwitch = document.querySelector('#change-color')
 let selected = (localStorage.getItem('selected') == undefined) ? 0 : parseInt(localStorage.getItem('selected')) 
 let currentCss = 0
@@ -95,6 +121,7 @@ const colorSets = [
     {name: 'Black & Green<br>flashbang warning', link: ''},
     {name: 'White & Red', link: ''}
 ]
+
 
 let logbooks = document.querySelectorAll('.log-selector')
 
@@ -126,10 +153,19 @@ let logbooks = document.querySelectorAll('.log-selector')
     await changeLogbook({target: logbooks[lastLogbook]})
 
 styleUpdate()
-document.querySelector('#hide').addEventListener('click', (event) => {
+
+const resizeObserver = new ResizeObserver((entries) => {
+    moveHideButton()
+})
+
+resizeObserver.observe(sidepanel)
+
+hide.addEventListener('click', (event) => {
     sidepanel.style.display = (sidepanel.style.display == 'none') ? 'flex' : 'none'
     event.target.innerHTML = (sidepanel.style.display == 'none') ? 'show side panel' : 'hide side panel'
+    moveHideButton()
 })
+
 
 /* global event listeners */
 onresize = (event) => { styleUpdate() }

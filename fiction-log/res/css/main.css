@@ -4,6 +4,8 @@ body {
     /* background-image: linear-gradient(180deg,#2b2c31,#4c4d52 20%); */
     font-family: Cambria;
     overflow: hidden;
+    color: black;
+    background-color: black;
 }
 
 footer {
@@ -46,7 +48,9 @@ nav {
 }
 
 .about-content {
-    width: 75%; 
+    line-height: 1.4;
+    font-size: 1.11rem;
+    width: 50%; 
     margin: auto; 
     text-align: justify;
     padding-top: 2rem;
@@ -114,6 +118,7 @@ nav {
     padding-left: 2rem;
     border-radius: 1px 1px 1px 1px;
     border-style: solid;
+    background-color: rgba(255,255,255, 0.2);
 }
 
 #deselected {
@@ -130,6 +135,8 @@ nav {
 {
     width: 100%;
     overflow-y: scroll;
+    z-index: 1;
+    position: absolute;
 }
 
 #entry {
@@ -144,10 +151,11 @@ nav {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    width: 500px;
+    width: 20%;
     text-align: justify;
     overflow: scroll;
     resize: horizontal;
+    z-index: 2;
 }
 
 #content {
@@ -156,6 +164,10 @@ nav {
     word-spacing: 2px;
     font-weight: 0;
     border-bottom: 1px solid;
+}
+
+#hide {
+    margin-left: auto;
 }
 
 @keyframes popup {
